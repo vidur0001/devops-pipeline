@@ -3,7 +3,18 @@ on:
     branches: [ main ]
 
 jobs:
+  lint:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v5
+
+      - name: Lint workflow files
+        uses: reviewdog/action-actionlint@v1
+
   build:
+    needs: lint
     runs-on: ubuntu-latest
 
     steps:
